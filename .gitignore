@@ -1,3 +1,6 @@
+# TODO publish docker build image
+build
+
 # Logs
 logs
 *.log

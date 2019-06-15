@@ -1,0 +1,30 @@
+#!/bin/sh
+
+EMSYSLIB=/emsdk_portable/emscripten/1.38.21/system/lib
+BASEPATH=/code
+
+rm -r lib
+mkdir lib
+
+docker run --rm -v $(pwd):$BASEPATH deanlandolt/emcc-arb \
+  emcc \
+    $BASEPATH/arbuckle.c \
+    $EMSYSLIB/libarb.a \
+    $EMSYSLIB/libflint.a \
+    $EMSYSLIB/libmpfr.a \
+    $EMSYSLIB/libgmp.a \
+  -o $BASEPATH/lib/arbuckle.js \
+  -s WASM=1 \
+  -s MODULARIZE=1 \
+  -s 'EXPORT_NAME="Arbuckle"' \
+  -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall','setValue','getValue']" \
+  -s ASSERTIONS=1 \
+  -s SAFE_HEAP=1 \
+  --pre-js $BASEPATH/arbuckle-init.js \
+  -Oz \
+  --llvm-lto 3 \
+  --llvm-opts 3 \
+  # --proxy-to-worker \
+  # -g4 \
+
+rm lib/arbuckle.wasm.pre

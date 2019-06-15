@@ -1,0 +1,12 @@
+{
+  "name": "arbuckle",
+  "version": "0.0.1-alpha",
+  "description": "Arbitrary precision complex arithmetic and special functions via WebAssembly compilation of arblib",
+  "main": "index.js",
+  "scripts": {
+    "build": "./build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "follymath",
+  "license": "MIT"
+}

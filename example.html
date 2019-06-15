@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Arbuckle: arb+wasm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="https://gitcdn.link/repo/follymath/arbuckle/master/lib/arbuckle.js"></script>
+</head>
+<body>
+<h1>Arbuckle</h1>
+<script>
+
+Arbuckle().then((Module) => {
+  var lib = Module.lib
+
+  console.log('chi(3/38):', lib.chi(3/38).slice(2).join(' + ') + 'i')
+
+  var s = [ Math.random(), 22371.182 ]
+  for (var i = 1; i <= 10; ++i) {
+    console.log('zeta(' + s.join('+') + 'i, 1/' + i + '):', lib.zeta2(s, 1/i).slice(4).join(' + ') + 'i')
+  }
+
+  var s = [ Math.random(), 2237.182 ]
+  for (var i = 1; i <= 100; ++i) {
+    console.log('zeta(' + s.join('+') + 'i, 1/' + i + '):', lib.zeta2(s, 1/i).slice(4).join(' + ') + 'i')
+  }
+})
+</script>
+</body>
+</html>
